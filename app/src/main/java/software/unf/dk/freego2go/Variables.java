@@ -13,6 +13,15 @@ public class Variables {
     public static int pointsOfWhite = 0;
     public static int pointsOfBlack = 0;
 
+    /*
+    States of a tile
+        0 = empty
+        1 = black
+        2 = White
+        4 = conqured by black
+        5 = conqured by white
+        6 = illegal due to KO
+     */
 
 
 }
