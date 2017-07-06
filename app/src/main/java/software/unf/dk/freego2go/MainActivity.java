@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,9 +13,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        makeBoard();
         BoardSize();
+        Variables.Board = makeBoard();
+
         //nigiri();
+
+        while(true) {
+            playerTurn();
+        }
+
+        //Vundet method
 
 
 
@@ -24,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Nigiri Colorselection()
     //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)
-    protected void nigiri(){
+    protected static void nigiri(){
         int number = 1+ (int)(Math.random()*50);
         System.out.println(number);
 
@@ -57,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
     // set board size
     public static void BoardSize(){
 
@@ -69,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //Create Board and Change Boardsize
-    public static void makeBoard(){
+    //Create Board
+    public static ArrayList<ArrayList<Integer>> makeBoard(){
         //TODO: Add change boardModifierFunction
-        ArrayList<ArrayList<Integer>>Board = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> Board = new ArrayList<>();
         for (int i = 0; i < Variables.boardsizeModifier; i++) {
             Board.add(new ArrayList<Integer>());
             for (int j = 0; j < Variables.boardsizeModifier; j++) {
@@ -81,13 +85,82 @@ public class MainActivity extends AppCompatActivity {
             }
             System.out.println(Board.get(i));
         }
-
+        return Board;
     }
 
     public static void playerTurn () {
         // Skifte turn og relavante variabler
         // User input til position på brættet
+        if(Variables.turn){
+            // blacks turn
+            System.out.println("B: Indtast koordinater x");
+            Scanner scanx = new Scanner(System.in);
+            int x = scanx.nextInt();
 
+            System.out.println("B: Indtast koordinater y");
+            Scanner scany = new Scanner(System.in);
+            int y = scany.nextInt();
+            //Repeat if invalid move
+            while(tileCheck(x,y) == false){
+                playerTurn();
+            }
+            Variables.amountOfTurns++;
+            //TODO IF-STATEMENTS SOM ÆNDRER POINTVARIABLER
+
+        }
+        else {
+            // Whites turn
+            System.out.println("W: Indtast koordinater x");
+            Scanner scanx = new Scanner(System.in);
+            int x = scanx.nextInt();
+
+            System.out.println("W: Indtast koordinater y");
+            Scanner scany = new Scanner(System.in);
+            int y = scany.nextInt();
+            //Repeat if invalid move
+            while(tileCheck(x,y) == false){
+                playerTurn();
+            }
+            Variables.amountOfTurns++;
+            //TODO IF-STATEMENTS SOM ÆNDRER POINTVARIABLER
+
+        }
+        System.out.println(Variables.Board);
+
+        //Skift spiller efter turslut
+        Variables.turn = !Variables.turn;
+    }
+
+    public static boolean tileCheck(int x, int y){
+        //Black
+        if(Variables.turn){
+            //Check and Change States
+            int ournum = Variables.Board.get(x).get(y);
+            if(ournum == state.empty){
+                Variables.Board.get(x).set(y, 1);
+                Variables.amountOfBlack++;
+                return true;
+            }
+            else{
+                System.out.println("Invalid Move");
+                return false;
+            }
+        }
+
+        //White
+        else{
+            //Check and Change States
+            int ournum = Variables.Board.get(x).get(y);
+            if(ournum == state.empty){
+                Variables.Board.get(x).set(y, 2);
+                Variables.amountOfWhite++;
+                return true;
+            }
+            else{
+                System.out.println("Invalid Move");
+                return true;
+            }
+        }
     }
     }
 
@@ -109,4 +182,3 @@ public class MainActivity extends AppCompatActivity {
       * Hook up Graphics
       *
       * */
-}
