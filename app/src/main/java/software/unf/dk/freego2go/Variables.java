@@ -5,7 +5,7 @@ package software.unf.dk.freego2go;
  */
 
 public class Variables {
-    public static boolean turn;
+    public static boolean turn;// true equals black and false equals white
     public static int boardsizeModifier = 9;
     public static int amountOfWhite = 0;
     public static int amountOfBlack = 0;
