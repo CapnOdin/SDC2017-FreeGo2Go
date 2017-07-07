@@ -14,7 +14,6 @@ import static software.unf.dk.freego2go.R.layout.giriskerm;
 import static software.unf.dk.freego2go.R.layout.menuskerm;
 
 
-
 public class MainActivity extends AppCompatActivity {
 
     private Button ButtonEven, ButtonOdd, ButtonStart, ButtonRules, ButtonSettings;
@@ -32,19 +31,16 @@ public class MainActivity extends AppCompatActivity {
         ButtonSettings = (Button) findViewById(R.id.SettingsButton);
 
 
-
-
         BoardSize();
         Variables.Board = makeBoard();
 
         //nigiri();
 
-        while(true) {
+        while (true) {
             playerTurn();
         }
 
         //Vundet method
-
 
 
     }
@@ -66,44 +62,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //Nigiri Colorselection()0
-    //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)
-    protected static void nigiri() {
+    //Chooses startplayer
+    protected static void nigiri(boolean userInput) {
+        /*Skal op i onCreate for OddEvenSkærm
         int number = 1 + (int) (Math.random() * 50);
-        System.out.println(number);
+        System.out.println(number);*/
 
-        if(number % 2 == 0){
-            System.out.println("Odd = 1 or even = 2?");
-            Scanner start = new Scanner(System.in);
-            int n = start.nextInt();
-            if(n == 2) {
+
+        if (Variables.generatedNumber % 2 == 0) {
+
+            if (userInput) {
                 Variables.turn = false; //set black
-                System.out.println("you got b");
-            }
-            else {
+                //Eventuelt notice/toast om at man har fået sort
+                //TODO: TEXTVIEW THAT SHOWS WHOS TURN IT IS
+            } else {
                 Variables.turn = true; //set white
-                System.out.println("you got w");
-            }
-
-        }
-        else {
-            System.out.println("Odd=1 or even=2?");
-            Scanner start = new Scanner(System.in);
-            int n = start.nextInt();
-            if(n == 2) {
-                Variables.turn = true; //set white
-                System.out.println("you got w");
 
             }
-            else {
+
+        } else {
+
+            if (!userInput) {
+                Variables.turn = true; //set white
+            } else {
                 Variables.turn = false; //set black
-                System.out.println("you got b");
             }
         }
     }
 
     // set board size
-    public static void BoardSize(){
+    public static void BoardSize() {
 
         System.out.println("Hvor stort skal brættet være?");
         Scanner scan = new Scanner(System.in);
@@ -113,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Create Board
-    public static ArrayList<ArrayList<Integer>> makeBoard(){
+    public static ArrayList<ArrayList<Integer>> makeBoard() {
         //TODO: Add change boardModifierFunction
         ArrayList<ArrayList<Integer>> Board = new ArrayList<>();
         for (int i = 0; i < Variables.boardsizeModifier; i++) {
@@ -127,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         return Board;
     }
 
+    //Describes a players turn
     public static void playerTurn() {
         // Skifte turn og relavante variabler
         // User input til position på brættet
@@ -136,25 +125,20 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("B: Indtast koordinater x or pass");
 
             Scanner scanx = new Scanner(System.in);
-            String in = scanx.next();
-            //Check for string of int - Pass
-            if (in.equals("pass")) {
-            } else {
-                Variables.currentX = Integer.parseInt(in);
+            Variables.currentX = scanx.nextInt();
 
-                //Spørg efter y
-                System.out.println("B: Indtast koordinater y");
-                Scanner scany = new Scanner(System.in);
-                Variables.currentY = scany.nextInt();
-                //Repeat if invalid move
-                while (!search.tileCheck(Variables.currentX, Variables.currentY)) {
-                    playerTurn();
-                }
+            //Spørg efter y
+            System.out.println("B: Indtast koordinater y");
+            Scanner scany = new Scanner(System.in);
+            Variables.currentY = scany.nextInt();
+            //Repeat if invalid move
+            while (!search.tileCheck(Variables.currentX, Variables.currentY)) {
+                playerTurn();
             }
 
-
+            //Change Relevant Variables
+            Variables.amountOfBlack++;
             Variables.amountOfTurns++;
-            //TODO IF-STATEMENTS SOM ÆNDRER POINTVARIABLER
 
         } else {
             // Whites turn
@@ -162,25 +146,22 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("W: Indtast koordinater x eller pass");
 
             Scanner scanx = new Scanner(System.in);
-            String in = scanx.next();
+            Variables.currentX = scanx.nextInt();
             //Check for string of int - Pass
-            if (in.equals("pass")) {
-            } else {
-                Variables.currentX = Integer.parseInt(in);
 
-                //Spørg efter y
-                System.out.println("W: Indtast koordinater y");
-                Scanner scany = new Scanner(System.in);
-                Variables.currentY = scany.nextInt();
-                //Repeat if invalid move
-                while (!search.tileCheck(Variables.currentX, Variables.currentY)) {
-                    playerTurn();
-                }
+            //Spørg efter y
+            System.out.println("W: Indtast koordinater y");
+            Scanner scany = new Scanner(System.in);
+
+            Variables.currentY = scany.nextInt();
+            //Repeat if invalid move
+            while (!search.tileCheck(Variables.currentX, Variables.currentY)) {
+                playerTurn();
             }
 
-
+            //Change Relevant Variables
+            Variables.amountOfWhite++;
             Variables.amountOfTurns++;
-            //TODO IF-STATEMENTS SOM ÆNDRER POINTVARIABLER
 
         }
         System.out.println(Variables.Board);
@@ -188,6 +169,14 @@ public class MainActivity extends AppCompatActivity {
         //Skift spiller efter turslut
         Variables.turn = !Variables.turn;
         System.out.println("\nAmount of Turns: " + Variables.amountOfTurns);
+        System.out.println("\nW: " + Variables.amountOfWhite + ", B: " + Variables.amountOfBlack);
+    }
+
+    //Passes the turn
+    public static void pass() {
+        Variables.turn = !Variables.turn;
+        Variables.amountOfTurns++;
+
     }
 
 }

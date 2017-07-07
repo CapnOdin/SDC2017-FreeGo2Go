@@ -7,6 +7,13 @@ import java.util.ArrayList;
  */
 
 public class Variables {
+
+    //Menu skærm
+
+    //Giri skærm
+    public static int generatedNumber;
+
+    //Board Skærm
     public static boolean turn = true;// true equals black and false equals white
     public static int boardsizeModifier = 9;
     public static int amountOfWhite = 0;
@@ -17,6 +24,5 @@ public class Variables {
     public static int currentX;
     public static int currentY;
     public static ArrayList<ArrayList<Integer>> Board;
-
 
 }

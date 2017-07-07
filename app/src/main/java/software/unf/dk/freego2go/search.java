@@ -5,35 +5,33 @@ package software.unf.dk.freego2go;
  */
 
 public class search {
-    public static boolean tileCheck(int x, int y){
+    public static boolean tileCheck(int x, int y) {
         //Black
-        if(Variables.turn){
+        if (Variables.turn) {
             //Check and Change States
             int ournum = Variables.Board.get(x).get(y);
-            if(ournum == state.empty){
-                Variables.Board.get(x).set(y, 1);
-                Variables.amountOfBlack++;
+            if (ournum == state.empty) {
+                Variables.Board.get(x).set(y, state.black);
+                //Return ift. While-loop
                 return true;
-            }
-            else{
+            } else {
                 System.out.println("Invalid Move");
                 return false;
             }
         }
 
         //White
-        else{
+        if (!Variables.turn) {
             //Check and Change States
             int ournum = Variables.Board.get(x).get(y);
-            if(ournum == state.empty){
-                Variables.Board.get(x).set(y, 2);
-                Variables.amountOfWhite++;
+            if (ournum == state.empty) {
+                Variables.Board.get(x).set(y, state.white);
                 return true;
-            }
-            else{
+            } else {
                 System.out.println("Invalid Move");
-                return true;
+                return false;
             }
         }
+        return Variables.turn;
     }
 }
