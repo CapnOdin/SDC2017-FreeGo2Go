@@ -1,17 +1,35 @@
 package software.unf.dk.freego2go;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static software.unf.dk.freego2go.R.layout.giriskerm;
+import static software.unf.dk.freego2go.R.layout.menuskerm;
+
 public class MainActivity extends AppCompatActivity {
+
+    private Button ButtonEven, ButtonOdd, ButtonStart, ButtonRules, ButtonSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(menuskerm);
+
+
+        ButtonEven = (Button) findViewById(R.id.EvenButton);
+        ButtonOdd = (Button) findViewById(R.id.OddButton);
+        ButtonStart = (Button) findViewById(R.id.StartButton);
+        ButtonRules = (Button) findViewById(R.id.RulesButton);
+        ButtonSettings = (Button) findViewById(R.id.SettingsButton);
+
+
+
 
         BoardSize();
         Variables.Board = makeBoard();
@@ -28,9 +46,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //Nigiri Colorselection()
+    public void startGame(View view) {
+        //Intent intent = new Intent(this, giriskerm);
+        //setContentView(giriskerm);
+    }
+
+    public void ChooseOdd(View view) {
+
+    }
+
+    public void ChooseEven(View view) {
+
+    }
+
+
+    //Nigiri Colorselection()0
     //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)
-    protected static void nigiri(){
+    protected static void nigiri(View view){
         int number = 1+ (int)(Math.random()*50);
         System.out.println(number);
 
@@ -162,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    }
+}
 
     //Board Generator()
 

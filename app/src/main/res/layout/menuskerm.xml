@@ -4,20 +4,20 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/StartButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="startGame"
         android:text="Start" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/SettingsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="settings" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/RulesButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Rules" />
