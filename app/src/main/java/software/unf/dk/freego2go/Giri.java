@@ -35,15 +35,17 @@ public class Giri extends AppCompatActivity {
     }
 
     //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)
-    protected static void nigiri() {
+    protected static void nigiri(boolean userInput) {
+        //Skal op i onCreate for OddEvenSkærm
         int number = 1 + (int) (Math.random() * 50);
-        //System.out.println(number);
+        System.out.println(number);
 
-        if (number % 2 == 0) {
-            //System.out.println("Odd = 1 or even = 2?");
+
+        if (Variables.generatedNumber % 2 == 0) {
+            /*System.out.println("Odd=1 or even=2?");
             Scanner start = new Scanner(System.in);
-            int n = start.nextInt();
-            if (n == 2) {
+            int n = start.nextInt();*/
+            if (userInput) {
                 Variables.turn = false; //set black
                 //System.out.println("you got b");
             } else {
@@ -52,18 +54,19 @@ public class Giri extends AppCompatActivity {
             }
 
         } else {
-            //System.out.println("Odd=1 or even=2?");
+            /*System.out.println("Odd=1 or even=2?");
             Scanner start = new Scanner(System.in);
-            int n = start.nextInt();
-            if (n == 2) {
+            int n = start.nextInt();*/
+            if (!userInput) {
                 Variables.turn = true; //set white
-                //System.out.println("you got w");
+                /*System.out.println("you got w");*/
 
             } else {
                 Variables.turn = false; //set black
-                //System.out.println("you got b");
+                /*System.out.println("you got b");*/
             }
         }
+    }
     }
 
     public void ChooseOdd(View view) {
