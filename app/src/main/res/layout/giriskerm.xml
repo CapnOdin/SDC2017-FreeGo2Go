@@ -3,8 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentBottom="false"
     android:layout_centerHorizontal="true"
+    android:layout_centerInParent="false"
+    android:layout_centerVertical="true"
+    android:layout_gravity="center"
+    android:fadingEdge="horizontal|vertical"
     android:orientation="vertical"
+    android:textAlignment="center"
     android:weightSum="1">
 
     <TextView
@@ -22,21 +28,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.09"
-        android:text="TextView"
+        android:text="Size of board:"
         android:textAlignment="center"
-        android:textSize="18sp"
-        tools:text="Size of board" />
+        android:textSize="22sp" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.09" />
+        android:layout_weight="0.09"
+        android:animationCache="false"
+        android:elevation="14dp"
+        android:scrollbars="vertical"
+        android:soundEffectsEnabled="false"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:text="Even or odd?"
         android:textAlignment="center"
         android:textAllCaps="true"

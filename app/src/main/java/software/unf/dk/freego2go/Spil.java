@@ -2,14 +2,26 @@ package software.unf.dk.freego2go;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 import static software.unf.dk.freego2go.R.layout.spilleskerm;
 
 public class Spil extends AppCompatActivity {
+    TextView SwitchPlayerText, ScoreTextBlack, ScoreTextWhite, AmountOfTurns;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(spilleskerm);
+
+        SwitchPlayerText = (TextView) findViewById(R.id.SwitchPlayer);
+        ScoreTextBlack = (TextView) findViewById(R.id.ScoreTextBlack);
+        ScoreTextWhite = (TextView) findViewById(R.id.ScoreTextWhite);
+        AmountOfTurns = (TextView) findViewById(R.id.AmountOfTurns);
+
+        playerTurn();
+
     }
 
     // set board size
@@ -37,7 +49,14 @@ public class Spil extends AppCompatActivity {
         return Board;
     }
 
-    public static void playerTurn() {
+    public void playerTurn() {
+        //Shows all relevant text
+        switchTurn();
+        ScoreTextBlack.setText("Black Score: " + Variables.amountOfBlack);
+        ScoreTextWhite.setText("White Score: " + Variables.amountOfWhite);
+        AmountOfTurns.setText("Amount of Turns: " + Variables.amountOfTurns);
+
+
         // Skifte turn og relavante variabler
         // User input til position på brættet
         if (Variables.turn) {
@@ -98,4 +117,11 @@ public class Spil extends AppCompatActivity {
         ////System.out.println("\nAmount of Turns: " + Variables.amountOfTurns);
     }
 
+    public void switchTurn() {
+
+        if (Variables.turn)
+            SwitchPlayerText.setText("Black's turn");
+        else
+            SwitchPlayerText.setText("White's turn");
+    }
 }

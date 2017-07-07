@@ -29,5 +29,4 @@ public class MainActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "size");
 
     }
-
 }

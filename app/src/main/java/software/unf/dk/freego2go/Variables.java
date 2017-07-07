@@ -22,6 +22,7 @@ public class Variables {
     public static int currentY;
     public static ArrayList<ArrayList<Integer>> Board;
     public static ArrayList<String> sizeArray = new ArrayList<>();
+
 }
 
 
