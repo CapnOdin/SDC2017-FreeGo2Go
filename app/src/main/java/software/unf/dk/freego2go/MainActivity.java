@@ -18,53 +18,50 @@ public class MainActivity extends AppCompatActivity {
 
         //nigiri();
 
-        while(true) {
+        while (true) {
             playerTurn();
         }
 
         //Vundet method
 
 
-
     }
 
     //Nigiri Colorselection()
     //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)
-    protected static void nigiri(){
-        int number = 1+ (int)(Math.random()*50);
+    protected static void nigiri() {
+        int number = 1 + (int) (Math.random() * 50);
         System.out.println(number);
 
-        if(number % 2 == 0){
+        if (number % 2 == 0) {
             System.out.println("Odd=1 or even=2?");
             Scanner start = new Scanner(System.in);
             int n = start.nextInt();
-            if(n == 2) {
+            if (n == 2) {
                 Variables.turn = false; //set black
                 System.out.println("you got b");
-            }
-            else {
+            } else {
                 Variables.turn = true; //set white
                 System.out.println("you got w");
             }
 
-        }
-        else {
+        } else {
             System.out.println("Odd=1 or even=2?");
             Scanner start = new Scanner(System.in);
             int n = start.nextInt();
-            if(n == 2) {
+            if (n == 2) {
                 Variables.turn = true; //set white
                 System.out.println("you got w");
 
-            }
-            else {
+            } else {
                 Variables.turn = false; //set black
                 System.out.println("you got b");
             }
         }
     }
+
     // set board size
-    public static void BoardSize(){
+    public static void BoardSize() {
 
         System.out.println("Hvor stort skal brættet være?");
         Scanner scan = new Scanner(System.in);
@@ -74,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Create Board
-    public static ArrayList<ArrayList<Integer>> makeBoard(){
+    public static ArrayList<ArrayList<Integer>> makeBoard() {
         //TODO: Add change boardModifierFunction
         ArrayList<ArrayList<Integer>> Board = new ArrayList<>();
         for (int i = 0; i < Variables.boardsizeModifier; i++) {
@@ -88,39 +85,58 @@ public class MainActivity extends AppCompatActivity {
         return Board;
     }
 
-    public static void playerTurn () {
+    public static void playerTurn() {
         // Skifte turn og relavante variabler
         // User input til position på brættet
-        if(Variables.turn){
+        if (Variables.turn) {
             // blacks turn
-            System.out.println("B: Indtast koordinater x");
-            Scanner scanx = new Scanner(System.in);
-            int x = scanx.nextInt();
+            //Spørg efter x eller pass
+            System.out.println("B: Indtast koordinater x or pass");
 
-            System.out.println("B: Indtast koordinater y");
-            Scanner scany = new Scanner(System.in);
-            int y = scany.nextInt();
-            //Repeat if invalid move
-            while(tileCheck(x,y) == false){
-                playerTurn();
+            Scanner scanx = new Scanner(System.in);
+            String in = scanx.next();
+            //Check for string of int - Pass
+            if (in.equals("pass")) {
+            } else {
+                Variables.currentX = Integer.parseInt(in);
+
+                //Spørg efter y
+                System.out.println("B: Indtast koordinater y");
+                Scanner scany = new Scanner(System.in);
+                Variables.currentY = scany.nextInt();
+                //Repeat if invalid move
+                while (!search.tileCheck(Variables.currentX, Variables.currentY)) {
+                    playerTurn();
+                }
             }
+
+
             Variables.amountOfTurns++;
             //TODO IF-STATEMENTS SOM ÆNDRER POINTVARIABLER
 
-        }
-        else {
+        } else {
             // Whites turn
-            System.out.println("W: Indtast koordinater x");
-            Scanner scanx = new Scanner(System.in);
-            int x = scanx.nextInt();
+            //Spørg efter x eller pass
+            System.out.println("W: Indtast koordinater x eller pass");
 
-            System.out.println("W: Indtast koordinater y");
-            Scanner scany = new Scanner(System.in);
-            int y = scany.nextInt();
-            //Repeat if invalid move
-            while(tileCheck(x,y) == false){
-                playerTurn();
+            Scanner scanx = new Scanner(System.in);
+            String in = scanx.next();
+            //Check for string of int - Pass
+            if (in.equals("pass")) {
+            } else {
+                Variables.currentX = Integer.parseInt(in);
+
+                //Spørg efter y
+                System.out.println("W: Indtast koordinater y");
+                Scanner scany = new Scanner(System.in);
+                Variables.currentY = scany.nextInt();
+                //Repeat if invalid move
+                while (!search.tileCheck(Variables.currentX, Variables.currentY)) {
+                    playerTurn();
+                }
             }
+
+
             Variables.amountOfTurns++;
             //TODO IF-STATEMENTS SOM ÆNDRER POINTVARIABLER
 
@@ -129,40 +145,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Skift spiller efter turslut
         Variables.turn = !Variables.turn;
+        System.out.println("\nAmount of Turns: " + Variables.amountOfTurns);
     }
 
-    public static boolean tileCheck(int x, int y){
-        //Black
-        if(Variables.turn){
-            //Check and Change States
-            int ournum = Variables.Board.get(x).get(y);
-            if(ournum == state.empty){
-                Variables.Board.get(x).set(y, 1);
-                Variables.amountOfBlack++;
-                return true;
-            }
-            else{
-                System.out.println("Invalid Move");
-                return false;
-            }
-        }
-
-        //White
-        else{
-            //Check and Change States
-            int ournum = Variables.Board.get(x).get(y);
-            if(ournum == state.empty){
-                Variables.Board.get(x).set(y, 2);
-                Variables.amountOfWhite++;
-                return true;
-            }
-            else{
-                System.out.println("Invalid Move");
-                return true;
-            }
-        }
-    }
-    }
+}
 
     //Board Generator()
 
