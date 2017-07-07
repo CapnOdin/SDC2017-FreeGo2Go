@@ -16,7 +16,7 @@ public class search {
                 return true;
             }
             else{
-                System.out.println("Invalid Move");
+                //System.out.println("Invalid Move");
                 return false;
             }
         }
