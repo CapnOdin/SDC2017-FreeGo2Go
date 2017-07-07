@@ -1,5 +1,6 @@
 package software.unf.dk.freego2go;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -32,49 +33,39 @@ public class Giri extends AppCompatActivity {
 
         Spil.BoardSize();
         Variables.Board = Spil.makeBoard();
+
+        //Generer tilfældigt tal
+        Variables.generatedNumber = 1 + (int) (Math.random() * 50);
+
     }
 
     //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)
     protected static void nigiri(boolean userInput) {
-        //Skal op i onCreate for OddEvenSkærm
-        int number = 1 + (int) (Math.random() * 50);
-        System.out.println(number);
-
-
         if (Variables.generatedNumber % 2 == 0) {
-            /*System.out.println("Odd=1 or even=2?");
-            Scanner start = new Scanner(System.in);
-            int n = start.nextInt();*/
             if (userInput) {
                 Variables.turn = false; //set black
-                //System.out.println("you got b");
-            } else {
+            } else
                 Variables.turn = true; //set white
-                //System.out.println("you got w");
-            }
-
         } else {
-            /*System.out.println("Odd=1 or even=2?");
-            Scanner start = new Scanner(System.in);
-            int n = start.nextInt();*/
             if (!userInput) {
                 Variables.turn = true; //set white
-                /*System.out.println("you got w");*/
-
-            } else {
+            } else
                 Variables.turn = false; //set black
-                /*System.out.println("you got b");*/
-            }
         }
     }
-    }
+
 
     public void ChooseOdd(View view) {
-        nigiri();
+        nigiri(true);
+        Intent intent = new Intent(this, Spil.class);
+        startActivity(intent);
 
     }
 
     public void ChooseEven(View view) {
+        nigiri(false);
+        Intent intent = new Intent(this, Spil.class);
+        startActivity(intent);
 
     }
 

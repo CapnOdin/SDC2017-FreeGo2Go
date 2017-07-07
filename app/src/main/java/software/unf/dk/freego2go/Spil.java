@@ -1,12 +1,32 @@
 package software.unf.dk.freego2go;
 
+import android.app.Activity;
+import android.os.Bundle;
+
 import java.util.ArrayList;
+
+import static software.unf.dk.freego2go.R.layout.giriskerm;
+import static software.unf.dk.freego2go.R.layout.spilleskerm;
 
 /**
  * Created by deltager on 07-07-17.
  */
 
-public class Spil {
+public class Spil extends Activity {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(spilleskerm);
+
+        initArrayList();
+
+    }
+
+    //Adds elements to sizeArray / dropdown-menu
+    public static void initArrayList() {
+        Variables.sizeArray.add("9x9 tiles");
+        Variables.sizeArray.add("13x13 tiles");
+        Variables.sizeArray.add("19x19 tiles");
+    }
 
     // set board size
     public static void BoardSize() {
