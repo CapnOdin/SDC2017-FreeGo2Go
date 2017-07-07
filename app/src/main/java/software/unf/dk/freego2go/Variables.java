@@ -14,6 +14,8 @@ public class Variables {
     public static int amountOfTurns = 0;
     public static int pointsOfWhite = 0;
     public static int pointsOfBlack = 0;
+    public static int currentX;
+    public static int currentY;
     public static ArrayList<ArrayList<Integer>> Board;
 
 
