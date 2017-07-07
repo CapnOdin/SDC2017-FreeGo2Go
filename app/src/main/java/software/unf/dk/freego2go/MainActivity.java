@@ -1,7 +1,11 @@
 package software.unf.dk.freego2go;
 
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.PopupWindow;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,7 +13,11 @@ import java.util.Scanner;
 import static software.unf.dk.freego2go.R.layout.giriskerm;
 import static software.unf.dk.freego2go.R.layout.menuskerm;
 
+
+
 public class MainActivity extends AppCompatActivity {
+
+    private Button ButtonEven, ButtonOdd, ButtonStart, ButtonRules, ButtonSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void startGame(View view) {
         //Intent intent = new Intent(this, giriskerm);
-        //setContentView(giriskerm);
+        //setC0ontentView(giriskerm);
+        DialogFragment newFragment = new BoardSizeDialog();
+        newFragment.show(getSupportFragmentManager(), "size");
+
     }
 
     public void ChooseOdd(View view) {
@@ -62,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(number);
 
         if(number % 2 == 0){
-            System.out.println("Odd=1 or even=2?");
+            System.out.println("Odd = 1 or even = 2?");
             Scanner start = new Scanner(System.in);
             int n = start.nextInt();
             if(n == 2) {
@@ -180,22 +191,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-    //Board Generator()
-
-    //Tile Search()
-
-    //State Switch()
-
-
-    /*Should have
-     *
-      * Scorecheck()
-      *
-      * Liberties()
-      *
-      * Capture Area Search()
-      *
-      * Hook up Graphics
-      *
-      * */
