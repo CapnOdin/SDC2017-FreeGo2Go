@@ -1,9 +1,5 @@
 package software.unf.dk.freego2go;
 
-/**
- * Created by deltager on 07-07-17.
- */
-
 public class search {
     public static boolean tileCheck(int x, int y) {
         //Black

@@ -7,9 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
-/**
- * Created by deltager on 07-07-17.
- */
 
 public class BoardSizeDialog extends DialogFragment {
 

@@ -1,9 +1,5 @@
 package software.unf.dk.freego2go;
 
-/**
- * Created by deltager on 06-07-17.
- */
-
 public class state {
 
     public static int empty =  0;

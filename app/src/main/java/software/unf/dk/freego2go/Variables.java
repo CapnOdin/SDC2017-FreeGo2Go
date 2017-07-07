@@ -2,9 +2,6 @@ package software.unf.dk.freego2go;
 
 import java.util.ArrayList;
 
-/**
- * Created by deltager on 06-07-17.
- */
 
 public class Variables {
 

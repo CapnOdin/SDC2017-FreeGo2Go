@@ -4,16 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import java.util.Scanner;
 
 import static software.unf.dk.freego2go.Spil.BoardSize;
 import static software.unf.dk.freego2go.R.layout.giriskerm;
-
-/**
- * Created by deltager on 07-07-17.
- */
 
 public class Giri extends AppCompatActivity {
 
@@ -37,6 +35,14 @@ public class Giri extends AppCompatActivity {
         //Generer tilfældigt tal
         Variables.generatedNumber = 1 + (int) (Math.random() * 50);
 
+        //Add to sizeArray
+        initArrayList();
+
+        //Lav Spinner
+        Spinner s = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Variables.sizeArray);
+        s.setAdapter(adapter);
+
     }
 
     //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)
@@ -54,6 +60,12 @@ public class Giri extends AppCompatActivity {
         }
     }
 
+    //Adds elements to sizeArray / dropdown-menu
+    public static void initArrayList() {
+        Variables.sizeArray.add("9x9 tiles");
+        Variables.sizeArray.add("13x13 tiles");
+        Variables.sizeArray.add("19x19 tiles");
+    }
 
     public void ChooseOdd(View view) {
         nigiri(true);

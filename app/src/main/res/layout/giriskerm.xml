@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical"
     android:weightSum="1">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:layout_weight="0.09"
         android:text="In go one player must select an amount of stones, then the other player must guess weather there is an even or odd number of stones. If he guesses right he gets black and start. If not he gets white. In this case the computer chooses a random numer from 1 to 50 and you must decide. if you are right you will lay the first brick if not. Your opponent will."
         android:textAlignment="center"
-        android:textSize="18sp"
-        android:layout_marginTop="12dp"/>
+        android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.09"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        tools:text="Size of board" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.09" />
 
     <TextView
         android:id="@+id/textView2"
@@ -31,13 +49,6 @@
         android:layout_height="wrap_content"
         android:onClick="ChooseOdd"
         android:text="Odd" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_weight="0.04" />
 
     <Button
         android:id="@+id/EvenButton"
