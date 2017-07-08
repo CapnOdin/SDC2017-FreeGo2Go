@@ -1,9 +1,15 @@
 package software.unf.dk.freego2go;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -19,6 +25,7 @@ import static software.unf.dk.freego2go.R.layout.spilleskerm;
 public class Game extends AppCompatActivity {
     TextView SwitchPlayerText, ScoreTextBlack, ScoreTextWhite, AmountOfTurns;
     GridView Coloumns;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(spilleskerm);
@@ -73,7 +80,7 @@ public class Game extends AppCompatActivity {
     public void playerTurn() {
         //Shows all relevant tex
 
-        switchTurn();
+        switchTurnText();
         ScoreTextBlack.setText("Black Score: " + Variables.amountOfBlack);
         ScoreTextWhite.setText("White Score: " + Variables.amountOfWhite);
         AmountOfTurns.setText("Amount of Turns: " + Variables.amountOfTurns);
@@ -139,12 +146,25 @@ public class Game extends AppCompatActivity {
         ////System.out.println("\nAmount of Turns: " + Variables.amountOfTurns);
     }
 
-    public void switchTurn() {
+    public void switchTurnText() {
 
         if (Variables.turn)
             SwitchPlayerText.setText("Black's turn");
         else
             SwitchPlayerText.setText("White's turn");
+    }
+
+    public void StopGame(View view) {
+        DialogFragment newFragment = new StopDialog(this);
+        newFragment.show(getSupportFragmentManager(), "");
+
+    }
+
+    public void pass(View view){
+        Variables.turn = !Variables.turn;
+        Variables.amountOfTurns++;
+        switchTurnText();
+
     }
 
     public static int setColumns(){
