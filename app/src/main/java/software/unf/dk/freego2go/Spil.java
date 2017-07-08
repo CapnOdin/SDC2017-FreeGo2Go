@@ -2,6 +2,13 @@ package software.unf.dk.freego2go;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,12 +21,14 @@ public class Spil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(spilleskerm);
-
+        Variables.Board = makeBoard();
         SwitchPlayerText = (TextView) findViewById(R.id.SwitchPlayer);
         ScoreTextBlack = (TextView) findViewById(R.id.ScoreTextBlack);
         ScoreTextWhite = (TextView) findViewById(R.id.ScoreTextWhite);
         AmountOfTurns = (TextView) findViewById(R.id.AmountOfTurns);
 
+        Variables.amountOfTurns = 0;
+        Variables.turn = true;
         playerTurn();
 
     }
@@ -35,22 +44,32 @@ public class Spil extends AppCompatActivity {
     }
 
     //Create Board
-    public static ArrayList<ArrayList<Integer>> makeBoard() {
+    public  ArrayList<ArrayList<Integer>> makeBoard() {
         //TODO: Add change boardModifierFunction
-        ArrayList<ArrayList<Integer>> Board = new ArrayList<>();
+        GridView BoardLayOut = (GridView) findViewById(R.id.BoardButtonLayOut);
+        ArrayList<ArrayList<Integer
+                >> Board = new ArrayList<>();
+
+        Integer[] lst = new Integer[Variables.boardsizeModifier * Variables.boardsizeModifier];
         for (int i = 0; i < Variables.boardsizeModifier; i++) {
             Board.add(new ArrayList<Integer>());
             for (int j = 0; j < Variables.boardsizeModifier; j++) {
+                lst[i+j] = 0;
                 Board.get(i).add(0);
 
             }
+
             //System.out.println(Board.get(i));
         }
+
+
+        BoardLayOut.setAdapter(new GridAdapter(this));
         return Board;
     }
 
     public void playerTurn() {
-        //Shows all relevant text
+        //Shows all relevant tex
+
         switchTurn();
         ScoreTextBlack.setText("Black Score: " + Variables.amountOfBlack);
         ScoreTextWhite.setText("White Score: " + Variables.amountOfWhite);
@@ -100,9 +119,9 @@ public class Spil extends AppCompatActivity {
                 //Scanner scany = new Scanner(System.in);
                 Variables.currentY = 7;
                 //Repeat if invalid move
-                while (!search.tileCheck(Variables.currentX, Variables.currentY)) {
-                    playerTurn();
-                }
+//                while (!search.tileCheck(Variables.currentX, Variables.currentY)) {
+//                    playerTurn();
+//                }
             }
 
 

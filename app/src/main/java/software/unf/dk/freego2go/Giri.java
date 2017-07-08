@@ -30,10 +30,8 @@ public class Giri extends AppCompatActivity {
         ButtonSettings = (Button) findViewById(R.id.SettingsButton);
 
         Spil.BoardSize();
-        Variables.Board = Spil.makeBoard();
 
-        //Generer tilfældigt tal
-        Variables.generatedNumber = 1 + (int) (Math.random() * 50);
+
 
         //Add to sizeArray
         initArrayList();
@@ -46,7 +44,11 @@ public class Giri extends AppCompatActivity {
     }
 
     //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)
-    protected static void nigiri(boolean userInput) {
+    protected void nigiri(boolean userInput) {
+
+        //Generer tilfældigt tal
+        Variables.generatedNumber = 1 + (int) (Math.random() * 50);
+
         if (Variables.generatedNumber % 2 == 0) {
             if (userInput) {
                 Variables.turn = false; //set black
