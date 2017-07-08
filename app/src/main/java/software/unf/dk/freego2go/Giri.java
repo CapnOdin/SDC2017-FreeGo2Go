@@ -1,6 +1,7 @@
 package software.unf.dk.freego2go;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,9 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import java.util.Scanner;
-
-import static software.unf.dk.freego2go.Spil.BoardSize;
 import static software.unf.dk.freego2go.R.layout.giriskerm;
 
 public class Giri extends AppCompatActivity {
@@ -22,16 +20,13 @@ public class Giri extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(giriskerm);
 
-
         ButtonEven = (Button) findViewById(R.id.EvenButton);
         ButtonOdd = (Button) findViewById(R.id.OddButton);
         ButtonStart = (Button) findViewById(R.id.StartButton);
         ButtonRules = (Button) findViewById(R.id.RulesButton);
         ButtonSettings = (Button) findViewById(R.id.SettingsButton);
 
-        Spil.BoardSize();
-
-
+        Game.BoardSize();
 
         //Add to sizeArray
         initArrayList();
@@ -41,6 +36,7 @@ public class Giri extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Variables.sizeArray);
         s.setAdapter(adapter);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)
@@ -71,14 +67,14 @@ public class Giri extends AppCompatActivity {
 
     public void ChooseOdd(View view) {
         nigiri(true);
-        Intent intent = new Intent(this, Spil.class);
+        Intent intent = new Intent(this, Game.class);
         startActivity(intent);
 
     }
 
     public void ChooseEven(View view) {
         nigiri(false);
-        Intent intent = new Intent(this, Spil.class);
+        Intent intent = new Intent(this, Game.class);
         startActivity(intent);
 
     }

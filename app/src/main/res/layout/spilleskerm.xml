@@ -79,7 +79,7 @@
     </LinearLayout>
 
     <GridView
-        android:id="@+id/BoardButtonLayOut"
+        android:id="@+id/Coloumns"
         android:layout_width="400dp"
         android:layout_height="466dp"
         android:layout_centerHorizontal="true"

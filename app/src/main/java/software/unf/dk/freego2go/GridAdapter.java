@@ -8,51 +8,51 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 public class GridAdapter extends BaseAdapter {
-        private Context mContext;
+    private Context mContext;
 
-        public GridAdapter(Context c) {
-            mContext = c;
+    public GridAdapter(Context c) {
+        mContext = c;
+    }
+
+    public int getCount() {
+        return mThumbIds.length;
+    }
+
+    public Object getItem(int position) {
+        return null;
+    }
+
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    // create a new ImageView for each item referenced by the Adapter
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ImageView imageView;
+        if (convertView == null) {
+            // if it's not recycled, initialize some attributes
+            imageView = new ImageView(mContext);
+            imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setPadding(8, 8, 8, 8);
+        } else {
+            imageView = (ImageView) convertView;
         }
 
-        public int getCount() {
-            return mThumbIds.length;
+        imageView.setImageResource(mThumbIds[position]);
+        return imageView;
+    }
+
+    // references to our images
+    private Integer[] mThumbIds = drawBoard(Variables.boardsizeModifier);
+
+
+
+    private static Integer[] drawBoard(int size) {
+        Integer[] boardArray = new Integer[size*size];
+        for (int i = 0; i < size * size; i++) {
+            boardArray[i] = R.drawable.neutral;
         }
-
-        public Object getItem(int position) {
-            return null;
-        }
-
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        // create a new ImageView for each item referenced by the Adapter
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ImageView imageView;
-            if (convertView == null) {
-                // if it's not recycled, initialize some attributes
-                imageView = new ImageView(mContext);
-                imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imageView.setPadding(8, 8, 8, 8);
-            } else {
-                imageView = (ImageView) convertView;
-            }
-
-            imageView.setImageResource(mThumbIds[position]);
-            return imageView;
-        }
-
-        // references to our images
-        private Integer[] mThumbIds = {
-                R.drawable.neutral, R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,
-                R.drawable.neutral, R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,
-                R.drawable.neutral, R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,
-                R.drawable.neutral, R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,
-                R.drawable.neutral, R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,
-                R.drawable.neutral, R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,
-                R.drawable.neutral, R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,
-                R.drawable.neutral, R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,
-                R.drawable.neutral, R.drawable.neutral, R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral,R.drawable.neutral, R.drawable.neutral, R.drawable.neutral
-        };
+        return boardArray;
+    }
 }

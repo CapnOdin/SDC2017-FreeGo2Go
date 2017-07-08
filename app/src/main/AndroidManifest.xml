@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Giri" />
-        <activity android:name=".Spil" />
+        <activity android:name=".Game" />
+        <activity android:name=".Rules" />
+
     </application>
 
 </manifest>

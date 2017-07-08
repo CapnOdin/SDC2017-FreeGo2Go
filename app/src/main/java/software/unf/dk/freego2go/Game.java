@@ -1,5 +1,6 @@
 package software.unf.dk.freego2go;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
@@ -15,9 +16,9 @@ import java.util.ArrayList;
 
 import static software.unf.dk.freego2go.R.layout.spilleskerm;
 
-public class Spil extends AppCompatActivity {
+public class Game extends AppCompatActivity {
     TextView SwitchPlayerText, ScoreTextBlack, ScoreTextWhite, AmountOfTurns;
-
+    GridView Coloumns;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(spilleskerm);
@@ -26,11 +27,12 @@ public class Spil extends AppCompatActivity {
         ScoreTextBlack = (TextView) findViewById(R.id.ScoreTextBlack);
         ScoreTextWhite = (TextView) findViewById(R.id.ScoreTextWhite);
         AmountOfTurns = (TextView) findViewById(R.id.AmountOfTurns);
+        Coloumns = (GridView) findViewById(R.id.Coloumns);
 
         Variables.amountOfTurns = 0;
         Variables.turn = true;
         playerTurn();
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     // set board size
@@ -46,10 +48,11 @@ public class Spil extends AppCompatActivity {
     //Create Board
     public  ArrayList<ArrayList<Integer>> makeBoard() {
         //TODO: Add change boardModifierFunction
-        GridView BoardLayOut = (GridView) findViewById(R.id.BoardButtonLayOut);
+        GridView BoardLayOut = (GridView) findViewById(R.id.Coloumns);
         ArrayList<ArrayList<Integer
                 >> Board = new ArrayList<>();
 
+        //Adds expanding values to twodimensional array
         Integer[] lst = new Integer[Variables.boardsizeModifier * Variables.boardsizeModifier];
         for (int i = 0; i < Variables.boardsizeModifier; i++) {
             Board.add(new ArrayList<Integer>());
@@ -142,5 +145,9 @@ public class Spil extends AppCompatActivity {
             SwitchPlayerText.setText("Black's turn");
         else
             SwitchPlayerText.setText("White's turn");
+    }
+
+    public static int setColumns(){
+        return Variables.boardsizeModifier;
     }
 }
