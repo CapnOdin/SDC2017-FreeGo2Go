@@ -26,10 +26,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startGame(View view) {
-        //Intent intent = new Intent(this, giriskerm);
-        //setContentView(giriskerm);
-        DialogFragment newFragment = new BoardSizeDialog(this);
-        newFragment.show(getSupportFragmentManager(), "size");
+        Intent intent = new Intent(this, Giri.class);
+        startActivity(intent);
 
     }
 
