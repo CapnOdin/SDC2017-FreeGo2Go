@@ -21,7 +21,16 @@ public class Variables {
     public static int pointsOfBlack = 0;
     public static int currentX;
     public static int currentY;
+
     public static ArrayList<ArrayList<Integer>> Board;
+
+    //Board logic
+    public static boolean centerCheck;
+    public static boolean leftCheck;
+    public static boolean rightCheck;
+    public static boolean topCheck;
+    public static boolean bottomCheck;
+
 
 }
 

@@ -1,6 +1,37 @@
 package software.unf.dk.freego2go;
 
+import java.util.ArrayList;
+
+
+
 public class search {
+
+    private static ArrayList<ArrayList<Integer>> tempBoard = (ArrayList<ArrayList<Integer>>) Variables.Board.clone(); //TODO: check if this
+    // TODO: overwrite the orginal board, this might be why it only prints in the temp array
+
+    public static ArrayList<ArrayList<Integer>> getTempBoard1() {
+        return TempBoard1;
+    }
+    private static ArrayList<ArrayList<Integer>> TempBoard1 = maketempBoard();
+
+    public static ArrayList<ArrayList<Integer>> maketempBoard() {
+
+        ArrayList<ArrayList<Integer>> TempBoard2 = new ArrayList<>();
+        for (int i = 0; i < Variables.boardsizeModifier; i++) {
+            TempBoard2.add(new ArrayList<Integer>());
+            for (int j = 0; j < Variables.boardsizeModifier; j++) {
+                TempBoard2.get(i).add(0); //TODO: check if we need an empty element to add 6
+
+            }
+
+        }
+        return TempBoard2;
+    }
+
+
+
+
+
     public static boolean tileCheck(int x, int y) {
         //Black
         if (Variables.turn) {
@@ -31,4 +62,112 @@ public class search {
         }
         return Variables.turn;
     }
+
+
+    //Searches values of tiles to change the value of captured areas
+    public static void captureArea() {
+        //Checking if the tiles around the last laid tile is empty, to know if we need to expand search
+
+        int y1 = -1, x1 = -1;
+        int y2 = 1, x2 = 1;
+
+        //checks all four sides edges
+        indexChecker();
+
+        //if not an edge/checks all surroundings tiles
+
+
+        if (Variables.leftCheck) {
+            y1 = 0;
+        }
+        if (Variables.rightCheck) {
+            y2 = 0;
+        }
+        if (Variables.topCheck) {
+            x1 = 0;
+        }
+        if (Variables.bottomCheck) {
+            x2 = 0;
+        }
+
+        for (int i = y1; i <= y2; i++) {
+
+            for (int j = x1; j <= x2; j++) {
+                //if not empty around
+                if (Variables.turn && tempBoard.get(Variables.currentX + i).get(Variables.currentY + j) > 0) {
+
+                    tempBoard.get(Variables.currentX).set(Variables.currentY, 0);
+                    System.out.println();
+                    //Check for simmilar stones
+                    System.out.println(tempBoard.get(Variables.currentX + i).get(Variables.currentY + j));
+                    if (tempBoard.get(Variables.currentX + i).get(Variables.currentY + j) == 1) {
+                        System.out.println("hey");
+                        //Adds state to temboard 2
+                        TempBoard1.get(Variables.currentX).set(Variables.currentY, 6);
+
+                        //Removes used values from origianl tempBoard
+                        tempBoard.get(Variables.currentX).set(Variables.currentY, 0);
+
+
+
+                        captureArea();
+
+                    }
+                }
+                if (!Variables.turn && tempBoard.get(Variables.currentX + i).get(Variables.currentY + j) > 0) {
+
+
+                    //Check for simmilar stones
+                    if (tempBoard.get(Variables.currentX + i).get(Variables.currentY + j) == 2) {
+                        System.out.println("hey");
+                        //Adds state to temboard 2
+                        TempBoard1.get(Variables.currentX).set(Variables.currentY, 6);
+
+                        //Removes used values from origianl tempBoard
+                        tempBoard.get(Variables.currentX).set(Variables.currentY, 0);
+
+
+                        captureArea();
+
+                    }
+                }
+            }
+
+        }
+        //TODO: move switchturn
+        Variables.leftCheck = false;
+        Variables.rightCheck = false;
+        Variables.topCheck = false;
+        Variables.bottomCheck = false;
+
+    }
+
+    //Sets GlobalCheck-variables
+    public static void indexChecker() {
+
+
+        if (Variables.currentY == Variables.boardsizeModifier) {
+            Variables.rightCheck = true;
+
+        }
+        if (Variables.currentY == 0) {
+            Variables.leftCheck = true;
+
+        }
+        if (Variables.currentX == Variables.boardsizeModifier) {
+            Variables.bottomCheck = true;
+
+        }
+        if (Variables.currentX == 0) {
+            Variables.topCheck = true;
+
+        }
+
+
+        if (!(Variables.leftCheck && Variables.rightCheck && Variables.bottomCheck && Variables.topCheck)) {
+            Variables.centerCheck = true;
+        }
+    }
+
+
 }

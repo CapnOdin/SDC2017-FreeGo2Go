@@ -1,7 +1,6 @@
 package software.unf.dk.freego2go;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,6 +21,7 @@ public class Giri extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(giriskerm);
+
 
         ButtonEven = (Button) findViewById(R.id.EvenButton);
         ButtonOdd = (Button) findViewById(R.id.OddButton);
@@ -44,6 +44,7 @@ public class Giri extends AppCompatActivity {
 
     //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)
     protected void nigiri(boolean userInput) {
+
         //Generer tilfældigt tal
         Variables.generatedNumber = 1 + (int) (Math.random() * 50);
         boolean generatedNumberBool;

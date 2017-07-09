@@ -78,6 +78,8 @@ public class Game extends AppCompatActivity {
         // User input til position på brættet
         if (Variables.turn) {
             // blacks turn
+            //Spørg efter x eller pass
+            ////System.out.println("B: Indtast koordinater x or pass");
 
             //Scanner scanx = new Scanner(System.in);
             String in = "5";
@@ -93,6 +95,8 @@ public class Game extends AppCompatActivity {
 //                while (!search.tileCheck(Variables.currentX, Variables.currentY)) {
 //                    playerTurn();
 //                }
+                //Checkes if the last move made captures anything
+                //search.captureArea();
             }
 
             //TODO IF-STATEMENTS SOM ÆNDRER POINTVARIABLER
@@ -122,6 +126,7 @@ public class Game extends AppCompatActivity {
             //TODO IF-STATEMENTS SOM ÆNDRER POINTVARIABLER
 
         }
+        //System.out.println(Variables.Board);
 
         //Skift spiller efter turslut
         Variables.turn = !Variables.turn;
@@ -150,5 +155,14 @@ public class Game extends AppCompatActivity {
 
     public static int setColumns() {
         return Variables.boardsizeModifier;
+    }
+
+    //Skift spiller efter turslut
+    public static void switchturn(){
+        Variables.turn = !Variables.turn;
+        System.out.println("\nAmount of Turns: " + Variables.amountOfTurns);
+        System.out.println("\nW: " + Variables.amountOfWhite + ", B: " + Variables.amountOfBlack);
+        //Reset tempBoard1
+        search.maketempBoard();
     }
 }
