@@ -33,6 +33,7 @@ public class Game extends AppCompatActivity {
         Variables.Board = makeBoard();
         //playerTurn();
         startText();
+        render();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
@@ -71,10 +72,7 @@ public class Game extends AppCompatActivity {
     public void playerTurn() {
         //Shows all relevant tex
 
-        switchTurnText();
-        ScoreTextBlack.setText("Black Score: " + Variables.amountOfBlack);
-        ScoreTextWhite.setText("White Score: " + Variables.amountOfWhite);
-        AmountOfTurns.setText("Amount of Turns: " + Variables.amountOfTurns);
+
 
 
         // Skifte turn og relavante variabler
@@ -137,16 +135,32 @@ public class Game extends AppCompatActivity {
     }
 
     public void kill(ArrayList<Point> previus) {
+        System.out.println("sdfsdgsfdg");
         for(Point p : previus) {
+            if(Variables.Board.get(p.x).get(p.y) == state.black) {
+                Variables.amountOfBlack--;
+                Variables.pointsOfWhite++;
+            } else if(Variables.Board.get(p.x).get(p.y) == state.white) {
+                Variables.amountOfWhite--;
+                Variables.pointsOfBlack++;
+            }
             Variables.Board.get(p.x).set(p.y, 0);
         }
         previus.clear();
+        render();
     }
 
     public void switchTurn() {
         Variables.turn = !Variables.turn;
         Variables.amountOfTurns++;
         switchTurnText();
+    }
+
+    public void render() {
+        switchTurnText();
+        ScoreTextBlack.setText("Black Score: " + (Variables.amountOfBlack + Variables.pointsOfBlack));
+        ScoreTextWhite.setText("White Score: " + (Variables.amountOfWhite + Variables.pointsOfWhite));
+        AmountOfTurns.setText("Amount of Turns: " + Variables.amountOfTurns);
     }
 
     public void switchTurnText() {

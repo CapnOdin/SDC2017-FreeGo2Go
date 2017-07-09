@@ -39,24 +39,27 @@ public class GridAdapter extends BaseAdapter {
             imageView.setPadding(8, 8, 8, 8);
             imageView.setMinimumWidth(0);
             imageView.setAdjustViewBounds(true);
-            imageView.j = position / Variables.boardsizeModifier;
-            imageView.i = position % Variables.boardsizeModifier;
+            imageView.j = position / (Variables.boardsizeModifier);
+            imageView.i = position % (Variables.boardsizeModifier);
             System.out.println(imageView.i + " " + imageView.j);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View view) {
                     int i = ((IndexedImageView) view).i;
                     int j = ((IndexedImageView) view).j;
-                    if(Variables.Board.get(i).get(j) == state.empty) {
-                        ArrayList<Point> previus = new ArrayList<Point>();
-                        if(Variables.turn && search.placeLegal(Variables.Board, new ArrayList<Point>(), state.black, i, j)) {
+                    if (Variables.Board.get(i).get(j) == state.empty) {
+                        ArrayList<Point> previous = new ArrayList<Point>();
+                        if (Variables.turn && search.placeLegal(Variables.Board, new ArrayList<Point>(), state.black, i, j)) {
                             ((ImageView) view).setImageResource(R.drawable.black);
                             Variables.Board.get(i).set(j, state.black);
+                            Variables.amountOfBlack++;
                             kill(i, j, state.white);
-                        } else if(search.placeLegal(Variables.Board, new ArrayList<Point>(), state.white, i, j)) {
+                        } else if (search.placeLegal(Variables.Board, new ArrayList<Point>(), state.white, i, j)) {
                             ((ImageView) view).setImageResource(R.drawable.white);
                             Variables.Board.get(i).set(j, state.black);
+                            Variables.amountOfWhite++;
                             kill(i, j, state.black);
                         }
+                        ((Game) mContext).render();
                         ((Game) mContext).switchTurn();
                     }
                 }
@@ -73,19 +76,23 @@ public class GridAdapter extends BaseAdapter {
     private Integer[] mThumbIds = drawBoard(Variables.boardsizeModifier);
 
     private void kill(int i, int j, int state) {
-        ArrayList<Point> previus = new ArrayList<Point>();
-        if(Variables.Board.get(i - 1).get(j) == state && !search.liberties(Variables.Board, previus, state, i - 1, j)) {
-            ((Game) mContext).kill(previus);
+        ArrayList<Point> previous = new ArrayList<Point>();
+        if(onBoard(i - 1, j) && Variables.Board.get(i - 1).get(j) == state && !search.liberties(Variables.Board, previous, state, i - 1, j)) {
+            ((Game) mContext).kill(previous);
         }
-        if(Variables.Board.get(i + 1).get(j) == state && !search.liberties(Variables.Board, previus, state, i + 1, j)) {
-            ((Game) mContext).kill(previus);
+        if(onBoard(i + 1, j) && Variables.Board.get(i + 1).get(j) == state && !search.liberties(Variables.Board, previous, state, i + 1, j)) {
+            ((Game) mContext).kill(previous);
         }
-        if(Variables.Board.get(i).get(j - 1) == state && !search.liberties(Variables.Board, previus, state, i, j - 1)) {
-            ((Game) mContext).kill(previus);
+        if(onBoard(i, j - 1) && Variables.Board.get(i).get(j - 1) == state && !search.liberties(Variables.Board, previous, state, i, j - 1)) {
+            ((Game) mContext).kill(previous);
         }
-        if(Variables.Board.get(i).get(j + 1) == state && !search.liberties(Variables.Board, previus, state, i, j + 1)) {
-            ((Game) mContext).kill(previus);
+        if(onBoard(i, j + 1) && Variables.Board.get(i).get(j + 1) == state && !search.liberties(Variables.Board, previous, state, i, j + 1)) {
+            ((Game) mContext).kill(previous);
         }
+    }
+
+    public static boolean onBoard(int i, int j) {
+        return i >= 0 && j >= 0 && i < Variables.boardsizeModifier && j < Variables.boardsizeModifier;
     }
 
     private static Integer[] drawBoard(int size) {
