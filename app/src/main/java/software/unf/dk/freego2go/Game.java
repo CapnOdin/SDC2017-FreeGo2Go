@@ -10,46 +10,35 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static software.unf.dk.freego2go.R.layout.spilleskerm;
-
 public class Game extends AppCompatActivity {
     TextView SwitchPlayerText, ScoreTextBlack, ScoreTextWhite, AmountOfTurns, OddEven;
-    GridView Columns;
+    GridView GridColumns;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(spilleskerm);
-        Variables.Board = makeBoard();
+        setContentView(R.layout.spilleskerm);
+
         SwitchPlayerText = (TextView) findViewById(R.id.SwitchPlayer);
         ScoreTextBlack = (TextView) findViewById(R.id.ScoreTextBlack);
         ScoreTextWhite = (TextView) findViewById(R.id.ScoreTextWhite);
         OddEven = (TextView) findViewById(R.id.OddEvenText);
         AmountOfTurns = (TextView) findViewById(R.id.AmountOfTurns);
-        Columns = (GridView) findViewById(R.id.Coloumns);
+        GridColumns = (GridView) findViewById(R.id.Columns);
 
         Variables.amountOfTurns = 0;
         Variables.turn = true;
+        Variables.Board = makeBoard();
         playerTurn();
         startText();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
-    // set board size
-    public static void BoardSize() {
-
-        ////System.out.println("Hvor stort skal brættet være?");
-        //Scanner scan = new Scanner(System.in);
-        //int n = scan.nextInt();
-        Variables.boardsizeModifier = 9;
-
-    }
-
     //Create Board
     public ArrayList<ArrayList<Integer>> makeBoard() {
         //TODO: Add change boardModifierFunction
-        GridView BoardLayOut = (GridView) findViewById(R.id.Coloumns);
-        ArrayList<ArrayList<Integer
-                >> Board = new ArrayList<>();
+        System.out.println(GridColumns + " " + Variables.boardsizeModifier);
+        GridColumns.setNumColumns(Variables.boardsizeModifier);
+        ArrayList<ArrayList<Integer>> Board = new ArrayList<>();
 
         //Adds expanding values to twodimensional array
         Integer[] lst = new Integer[Variables.boardsizeModifier * Variables.boardsizeModifier];
@@ -64,16 +53,14 @@ public class Game extends AppCompatActivity {
             //System.out.println(Board.get(i));
         }
 
-
-        BoardLayOut.setAdapter(new GridAdapter(this));
+        GridColumns.setAdapter(new GridAdapter(this));
         return Board;
     }
 
     public void startText() {
-        if(Variables.oddOrEven){
+        if (Variables.oddOrEven) {
             OddEven.setText("Odd is Black");
-        }
-        else
+        } else
             OddEven.setText("Even is Black");
 
     }

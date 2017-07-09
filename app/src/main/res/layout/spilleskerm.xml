@@ -83,13 +83,14 @@
     </LinearLayout>
 
     <GridView
-        android:id="@+id/Coloumns"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_weight="0.24"
-        android:numColumns="9"
+        android:id="@+id/Columns"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_weight="0"
+        android:numColumns="9"
+        android:theme="@android:style/Theme.Light.NoTitleBar"/>
 
     <Button
         android:id="@+id/StopGameButton"

@@ -15,7 +15,8 @@ import static software.unf.dk.freego2go.R.layout.giriskerm;
 
 public class Giri extends AppCompatActivity {
 
-    Button ButtonEven, ButtonOdd, ButtonStart, ButtonRules, ButtonSettings;
+    Button ButtonEven, ButtonOdd, ButtonStart, ButtonRules;
+    Spinner Spin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +27,7 @@ public class Giri extends AppCompatActivity {
         ButtonOdd = (Button) findViewById(R.id.OddButton);
         ButtonStart = (Button) findViewById(R.id.StartButton);
         ButtonRules = (Button) findViewById(R.id.RulesButton);
-        ButtonSettings = (Button) findViewById(R.id.SettingsButton);
-
-        Game.BoardSize();
+        Spin = (Spinner) findViewById(R.id.spinner);
 
         //Add to sizeArray
         ArrayList<String> sizeArray = new ArrayList<>();
@@ -69,6 +68,17 @@ public class Giri extends AppCompatActivity {
         }
     }
 
+    // set board size according to spinner
+    public void BoardSize() {
+        if (Spin.getSelectedItem() == "9x9 tiles") {
+            Variables.boardsizeModifier = 9;
+        } else if (Spin.getSelectedItem() == "13x13 tiles") {
+            Variables.boardsizeModifier = 13;
+        } else{
+            Variables.boardsizeModifier = 19;
+        }
+    }
+
     //Adds elements to sizeArray / dropdown-menu
     public static void initArrayList(ArrayList<String> spinner) {
         spinner.add("9x9 tiles");
@@ -78,6 +88,7 @@ public class Giri extends AppCompatActivity {
 
     public void ChooseOdd(View view) {
         nigiri(true);
+        BoardSize();
         Intent intent = new Intent(this, Game.class);
         startActivity(intent);
 
@@ -85,6 +96,7 @@ public class Giri extends AppCompatActivity {
 
     public void ChooseEven(View view) {
         nigiri(false);
+        BoardSize();
         Intent intent = new Intent(this, Game.class);
         startActivity(intent);
 

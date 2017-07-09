@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         ButtonStart = (Button) findViewById(R.id.StartButton);
         ButtonRules = (Button) findViewById(R.id.RulesButton);
-        ButtonSettings = (Button) findViewById(R.id.SettingsButton);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }

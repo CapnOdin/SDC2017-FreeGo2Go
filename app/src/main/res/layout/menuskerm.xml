@@ -11,12 +11,12 @@
         android:id="@+id/StartButton"
         android:layout_width="1059dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
         android:onClick="startGame"
         android:text="Start"
-        android:textSize="48sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="36sp"/>
 
     <Button
         android:id="@+id/RulesButton"
@@ -30,7 +30,7 @@
         android:layout_marginTop="25dp"
         android:onClick="rules"
         android:text="Rules"
-        android:textSize="48sp"/>
+        android:textSize="36sp"/>
 
     <TextView
         android:id="@+id/ByLine"
