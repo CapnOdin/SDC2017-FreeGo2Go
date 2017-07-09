@@ -12,6 +12,7 @@ public class Variables {
 
     //Board Skærm
     public static boolean turn = true;// true equals black and false equals white
+    public static boolean oddOrEven;
     public static int boardsizeModifier = 13;
     public static int amountOfWhite = 0;
     public static int amountOfBlack = 0;
@@ -21,7 +22,6 @@ public class Variables {
     public static int currentX;
     public static int currentY;
     public static ArrayList<ArrayList<Integer>> Board;
-    public static ArrayList<String> sizeArray = new ArrayList<>();
 
 }
 

@@ -1,21 +1,11 @@
 package software.unf.dk.freego2go;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,8 +13,8 @@ import java.util.ArrayList;
 import static software.unf.dk.freego2go.R.layout.spilleskerm;
 
 public class Game extends AppCompatActivity {
-    TextView SwitchPlayerText, ScoreTextBlack, ScoreTextWhite, AmountOfTurns;
-    GridView Coloumns;
+    TextView SwitchPlayerText, ScoreTextBlack, ScoreTextWhite, AmountOfTurns, OddEven;
+    GridView Columns;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +23,14 @@ public class Game extends AppCompatActivity {
         SwitchPlayerText = (TextView) findViewById(R.id.SwitchPlayer);
         ScoreTextBlack = (TextView) findViewById(R.id.ScoreTextBlack);
         ScoreTextWhite = (TextView) findViewById(R.id.ScoreTextWhite);
+        OddEven = (TextView) findViewById(R.id.OddEvenText);
         AmountOfTurns = (TextView) findViewById(R.id.AmountOfTurns);
-        Coloumns = (GridView) findViewById(R.id.Coloumns);
+        Columns = (GridView) findViewById(R.id.Coloumns);
 
         Variables.amountOfTurns = 0;
         Variables.turn = true;
         playerTurn();
+        startText();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
@@ -53,7 +45,7 @@ public class Game extends AppCompatActivity {
     }
 
     //Create Board
-    public  ArrayList<ArrayList<Integer>> makeBoard() {
+    public ArrayList<ArrayList<Integer>> makeBoard() {
         //TODO: Add change boardModifierFunction
         GridView BoardLayOut = (GridView) findViewById(R.id.Coloumns);
         ArrayList<ArrayList<Integer
@@ -64,7 +56,7 @@ public class Game extends AppCompatActivity {
         for (int i = 0; i < Variables.boardsizeModifier; i++) {
             Board.add(new ArrayList<Integer>());
             for (int j = 0; j < Variables.boardsizeModifier; j++) {
-                lst[i+j] = 0;
+                lst[i + j] = 0;
                 Board.get(i).add(0);
 
             }
@@ -75,6 +67,15 @@ public class Game extends AppCompatActivity {
 
         BoardLayOut.setAdapter(new GridAdapter(this));
         return Board;
+    }
+
+    public void startText() {
+        if(Variables.oddOrEven){
+            OddEven.setText("Odd is Black");
+        }
+        else
+            OddEven.setText("Even is Black");
+
     }
 
     public void playerTurn() {
@@ -90,8 +91,6 @@ public class Game extends AppCompatActivity {
         // User input til position på brættet
         if (Variables.turn) {
             // blacks turn
-            //Spørg efter x eller pass
-            ////System.out.println("B: Indtast koordinater x or pass");
 
             //Scanner scanx = new Scanner(System.in);
             String in = "5";
@@ -109,8 +108,6 @@ public class Game extends AppCompatActivity {
 //                }
             }
 
-
-            Variables.amountOfTurns++;
             //TODO IF-STATEMENTS SOM ÆNDRER POINTVARIABLER
 
         } else {
@@ -135,11 +132,9 @@ public class Game extends AppCompatActivity {
             }
 
 
-            Variables.amountOfTurns++;
             //TODO IF-STATEMENTS SOM ÆNDRER POINTVARIABLER
 
         }
-        //System.out.println(Variables.Board);
 
         //Skift spiller efter turslut
         Variables.turn = !Variables.turn;
@@ -147,7 +142,7 @@ public class Game extends AppCompatActivity {
     }
 
     public void switchTurnText() {
-
+        AmountOfTurns.setText("Amount of turns: " + Variables.amountOfTurns);
         if (Variables.turn)
             SwitchPlayerText.setText("Black's turn");
         else
@@ -157,17 +152,16 @@ public class Game extends AppCompatActivity {
     public void StopGame(View view) {
         DialogFragment newFragment = new StopDialog(this);
         newFragment.show(getSupportFragmentManager(), "");
-
     }
 
-    public void pass(View view){
+    public void pass(View view) {
         Variables.turn = !Variables.turn;
         Variables.amountOfTurns++;
         switchTurnText();
 
     }
 
-    public static int setColumns(){
+    public static int setColumns() {
         return Variables.boardsizeModifier;
     }
 }

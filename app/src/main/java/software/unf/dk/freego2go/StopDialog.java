@@ -25,7 +25,7 @@ public class StopDialog extends DialogFragment {
         builder.setMessage("Are you sure you want to stop your game?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent intent = new Intent(context, MainActivity.class);
+                        Intent intent = new Intent(context, Win.class);
                         startActivity(intent);
                     }
                 })

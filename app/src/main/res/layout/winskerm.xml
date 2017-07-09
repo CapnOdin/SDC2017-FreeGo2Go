@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/WinText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="118dp"
+        android:text="Black Wins"
+        android:onClick="winPlayer"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/WinTurns"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/WinText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:text="Amount of Turns: 100"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/WinBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Black Score: 80"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/WinWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/WinBlack"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="White Score: 100"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="19dp"
+        android:layout_toEndOf="@+id/WinBlack"
+        android:text="Go To Menu"
+        android:onClick="goToMenu"
+        android:layout_toRightOf="@+id/WinBlack"/>
+</RelativeLayout>

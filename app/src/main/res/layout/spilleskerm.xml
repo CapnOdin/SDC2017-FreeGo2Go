@@ -51,7 +51,8 @@
             android:layout_alignParentStart="true"
             android:layout_weight="1"
             android:text="Score: White"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textSize="24sp"/>
 
         <TextView
             android:id="@+id/AmountOfTurns"
@@ -63,6 +64,7 @@
             android:layout_weight="1"
             android:text="Amount of Turns: 0"
             android:textAlignment="center"
+            android:textSize="24sp"
             android:textStyle="bold"/>
 
         <TextView
@@ -74,7 +76,8 @@
             android:layout_alignParentStart="true"
             android:layout_weight="1"
             android:text="Score: Black"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textSize="24sp"/>
 
 
     </LinearLayout>
@@ -82,38 +85,48 @@
     <GridView
         android:id="@+id/Coloumns"
         android:layout_width="400dp"
-        android:layout_height="466dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_height="400dp"
         android:layout_weight="0.24"
-        android:numColumns="9"/>
+        android:numColumns="9"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/StopGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_toEndOf="@+id/Coloumns"
         android:onClick="StopGame"
-        android:text="Stop Game"/>
+        android:text="Stop Game"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="18dp"
+        android:layout_toRightOf="@+id/Coloumns"
+        android:layout_toEndOf="@+id/Coloumns"/>
 
     <Button
         android:id="@+id/PassButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="pass"
+        android:text="Pass your turn"
+        android:layout_alignBaseline="@+id/StopGameButton"
         android:layout_alignBottom="@+id/StopGameButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="38dp"
-        android:layout_marginStart="38dp"
         android:layout_toLeftOf="@+id/Coloumns"
-        android:layout_toStartOf="@+id/Coloumns"
-        android:onClick="pass"
-        android:text="Pass your turn"/>
+        android:layout_toStartOf="@+id/Coloumns"/>
+
+    <TextView
+        android:id="@+id/OddEvenText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/StopGameButton"
+        android:layout_alignTop="@+id/StopGameButton"
+        android:layout_centerHorizontal="true"
+        android:text="sample"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 
 </RelativeLayout>
