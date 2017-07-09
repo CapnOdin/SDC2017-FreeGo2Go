@@ -28,7 +28,7 @@ public class Game extends AppCompatActivity {
         Variables.amountOfTurns = 0;
         Variables.turn = true;
         Variables.Board = makeBoard();
-        playerTurn();
+        //playerTurn();
         startText();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
@@ -131,6 +131,19 @@ public class Game extends AppCompatActivity {
         //Skift spiller efter turslut
         Variables.turn = !Variables.turn;
         ////System.out.println("\nAmount of Turns: " + Variables.amountOfTurns);
+    }
+
+    public void kill(ArrayList<Point> previus) {
+        for(Point p : previus) {
+            Variables.Board.get(p.x).set(p.y, 0);
+        }
+        previus.clear();
+    }
+
+    public void switchTurn() {
+        Variables.turn = !Variables.turn;
+        Variables.amountOfTurns++;
+        switchTurnText();
     }
 
     public void switchTurnText() {

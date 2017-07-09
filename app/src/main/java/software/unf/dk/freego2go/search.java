@@ -182,7 +182,6 @@ public class search {
                 || checkArea(state2, x + 1, y, board, previousPoints)
                 || checkArea(state2, x, y - 1, board, previousPoints)
                 || checkArea(state2, x, y + 1, board, previousPoints);
-
     }
 
     public static boolean seenPreviously(ArrayList<Point> previousPoints, int x, int y, int state, int state1) {

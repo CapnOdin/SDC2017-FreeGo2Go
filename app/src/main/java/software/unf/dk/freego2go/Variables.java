@@ -11,7 +11,7 @@ public class Variables {
     public static int generatedNumber;
 
     //Board Skærm
-    public static boolean turn = true;// true equals black and false equals white
+    public static boolean turn = false;// true equals black and false equals white
     public static boolean oddOrEven;
     public static int boardsizeModifier = 13;
     public static int amountOfWhite = 0;
