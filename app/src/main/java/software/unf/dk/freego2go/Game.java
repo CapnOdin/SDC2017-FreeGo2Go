@@ -15,8 +15,6 @@ public class Game extends AppCompatActivity {
     GridView GridColumns;
 
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.spilleskerm);

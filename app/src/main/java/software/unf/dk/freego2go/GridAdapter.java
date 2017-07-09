@@ -53,14 +53,16 @@ public class GridAdapter extends BaseAdapter {
                             Variables.Board.get(i).set(j, state.black);
                             Variables.amountOfBlack++;
                             kill(i, j, state.white);
-                        } else if (search.placeLegal(Variables.Board, new ArrayList<Point>(), state.white, i, j)) {
+                            ((Game) mContext).render();
+                            ((Game) mContext).switchTurn();
+                        } else if (!Variables.turn && search.placeLegal(Variables.Board, new ArrayList<Point>(), state.white, i, j)) {
                             ((ImageView) view).setImageResource(R.drawable.white);
-                            Variables.Board.get(i).set(j, state.black);
+                            Variables.Board.get(i).set(j, state.white);
                             Variables.amountOfWhite++;
                             kill(i, j, state.black);
+                            ((Game) mContext).render();
+                            ((Game) mContext).switchTurn();
                         }
-                        ((Game) mContext).render();
-                        ((Game) mContext).switchTurn();
                     }
                 }
             });
@@ -77,6 +79,7 @@ public class GridAdapter extends BaseAdapter {
 
     private void kill(int i, int j, int state) {
         ArrayList<Point> previous = new ArrayList<Point>();
+        System.out.println(i + ", " + j);
         if(onBoard(i - 1, j) && Variables.Board.get(i - 1).get(j) == state && !search.liberties(Variables.Board, previous, state, i - 1, j)) {
             ((Game) mContext).kill(previous);
         }
