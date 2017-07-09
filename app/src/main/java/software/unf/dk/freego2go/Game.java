@@ -132,7 +132,6 @@ public class Game extends AppCompatActivity {
     }
 
     public void kill(ArrayList<Point> previus) {
-        System.out.println("sdfsdgsfdg");
         for(Point p : previus) {
             if(Variables.Board.get(p.x).get(p.y) == state.black) {
                 Variables.amountOfBlack--;
