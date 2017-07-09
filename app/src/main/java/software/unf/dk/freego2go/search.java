@@ -168,6 +168,39 @@ public class search {
             Variables.centerCheck = true;
         }
     }
+    public static boolean placeLegal(ArrayList<ArrayList<Integer>> board, ArrayList<Point> previousPoints, int turn, int x, int y) {
+        if(board.get(x).get(y) != 0){
+            return false;
+        } else {
+            return liberties(board, previousPoints, turn, x, y);
+        }
+    }
+
+    public static boolean liberties(ArrayList<ArrayList<Integer>> board, ArrayList<Point> previousPoints, int state2, int x, int y) {
+        previousPoints.add(new Point(x, y));
+        return     checkArea(state2, x - 1, y, board, previousPoints)
+                || checkArea(state2, x + 1, y, board, previousPoints)
+                || checkArea(state2, x, y - 1, board, previousPoints)
+                || checkArea(state2, x, y + 1, board, previousPoints);
+
+    }
+
+    public static boolean seenPreviously(ArrayList<Point> previousPoints, int x, int y, int state, int state1) {
+        return !previousPoints.contains(new Point(x, y)) && state == state1;
+    }
+
+    public static boolean checkArea(int state2, int x, int y, ArrayList<ArrayList<Integer>> board, ArrayList<Point> previousPoints) {
+        if (x >= 0 && y >= 0 && x < Variables.boardsizeModifier && y < Variables.boardsizeModifier) {
+            if (seenPreviously(previousPoints, x, y, board.get(x).get(y), 0)) {
+                return true;
+
+            } else if (seenPreviously(previousPoints, x, y, board.get(x).get(y), state2)) {
+                return liberties(board, previousPoints, state2, x, y);
+            }
+        }
+
+        return (false);
+    }
 
 
 }
