@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 public class Game extends AppCompatActivity {
     TextView SwitchPlayerText, ScoreTextBlack, ScoreTextWhite, AmountOfTurns, OddEven;
     GridView GridColumns;
+
+    GridAdapter adapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +61,8 @@ public class Game extends AppCompatActivity {
                 Board.get(i).add(0);
             }
         }
-
-        GridColumns.setAdapter(new GridAdapter(this));
+        adapter = new GridAdapter(this);
+        GridColumns.setAdapter(adapter);
         return Board;
     }
 
@@ -145,6 +148,7 @@ public class Game extends AppCompatActivity {
                 Variables.amountOfWhite--;
                 Variables.pointsOfBlack++;
             }
+            adapter.lst.get(p.x).get(p.y).setImageResource(R.drawable.neutral);
             Variables.Board.get(p.x).set(p.y, 0);
         }
         previus.clear();

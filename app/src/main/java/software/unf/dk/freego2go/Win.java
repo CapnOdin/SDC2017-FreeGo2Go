@@ -28,11 +28,11 @@ public class Win extends AppCompatActivity {
     }
 
     public void endScoreWhite() {
-        endScoreWhite.setText("White Score: " + (Variables.amountOfBlack + Variables.pointsOfBlack));
+        endScoreWhite.setText("White Score: " + (Variables.amountOfWhite + Variables.pointsOfWhite));
     }
 
     public void endScoreBlack() {
-        endScoreBlack.setText("Black Score: " + (Variables.amountOfWhite + Variables.pointsOfWhite));
+        endScoreBlack.setText("Black Score: " + (Variables.amountOfBlack + Variables.pointsOfBlack));
 
     }
 

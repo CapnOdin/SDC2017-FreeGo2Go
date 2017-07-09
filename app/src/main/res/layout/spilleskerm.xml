@@ -1,46 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/PlayBoard"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:weightSum="1">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/PlayBoard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#F9DDA2"
+                android:orientation="vertical"
+                android:weightSum="1">
 
     <TextView
         android:id="@+id/SwitchPlayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
+        android:layout_above="@+id/Columns"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:text="Black's Turn"
         android:textAlignment="center"
+        android:textColor="#FF000000"
         android:textSize="48sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:textStyle="bold"/>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-                  android:id="@+id/BoardLinearLayout"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:weightSum="1"
-                  android:layout_below="@+id/SwitchPlayer"
-                  android:layout_centerHorizontal="true">
-
-
-    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/ScoreTextWhite"
@@ -52,7 +41,9 @@
             android:layout_weight="1"
             android:text="Score: White"
             android:textAlignment="center"
+            android:textColor="#FF000000"
             android:textSize="24sp"/>
+
 
         <TextView
             android:id="@+id/AmountOfTurns"
@@ -64,8 +55,10 @@
             android:layout_weight="1"
             android:text="Amount of Turns: 0"
             android:textAlignment="center"
+            android:textColor="#FF000000"
             android:textSize="24sp"
             android:textStyle="bold"/>
+
 
         <TextView
             android:id="@+id/ScoreTextBlack"
@@ -77,6 +70,7 @@
             android:layout_weight="1"
             android:text="Score: Black"
             android:textAlignment="center"
+            android:textColor="#FF000000"
             android:textSize="24sp"/>
 
 
@@ -88,9 +82,10 @@
         android:layout_height="500dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_weight="0"
         android:numColumns="9"
         android:theme="@android:style/Theme.Light.NoTitleBar"/>
+    <!--android:layout_weight="0"-->
+
 
     <Button
         android:id="@+id/StopGameButton"
@@ -100,11 +95,11 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="18dp"
-        android:layout_toEndOf="@+id/Coloumns"
-        android:layout_toRightOf="@+id/Coloumns"
+        android:layout_toEndOf="@+id/Columns"
+        android:layout_toRightOf="@+id/Columns"
         android:onClick="StopGame"
         android:text="Stop Game"
-        android:textSize="24sp" />
+        android:textSize="24sp"/>
 
     <Button
         android:id="@+id/PassButton"
@@ -114,22 +109,23 @@
         android:layout_alignBottom="@+id/StopGameButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/Coloumns"
-        android:layout_toStartOf="@+id/Coloumns"
+        android:layout_toLeftOf="@+id/Columns"
+        android:layout_toStartOf="@+id/Columns"
         android:onClick="pass"
         android:text="Pass your turn"
-        android:textSize="24sp" />
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/OddEvenText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/StopGameButton"
-        android:layout_alignTop="@+id/StopGameButton"
+        android:layout_alignBottom="@+id/PassButton"
         android:layout_centerHorizontal="true"
         android:text="sample"
         android:textAlignment="textStart"
+        android:textColor="#FF000000"
         android:textSize="24sp"
         android:textStyle="bold"/>
+
 
 </RelativeLayout>

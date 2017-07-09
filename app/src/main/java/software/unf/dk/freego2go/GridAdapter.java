@@ -12,8 +12,15 @@ import java.util.ArrayList;
 public class GridAdapter extends BaseAdapter {
     private Context mContext;
 
+    public ArrayList<ArrayList<IndexedImageView>> lst;
+
     public GridAdapter(Context c) {
         mContext = c;
+        lst = new ArrayList<>();
+        for (int i = 0; i < Variables.boardsizeModifier; i++) {
+            lst.add(new ArrayList<IndexedImageView>());
+        }
+
     }
 
     public int getCount() {
@@ -41,6 +48,7 @@ public class GridAdapter extends BaseAdapter {
             imageView.setAdjustViewBounds(true);
             imageView.j = position / (Variables.boardsizeModifier);
             imageView.i = position % (Variables.boardsizeModifier);
+            lst.get(imageView.i).add(imageView);
             System.out.println(imageView.i + " " + imageView.j);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View view) {
