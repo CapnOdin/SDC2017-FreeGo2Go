@@ -29,6 +29,13 @@ public class Game extends AppCompatActivity {
         GridColumns = (GridView) findViewById(R.id.Columns);
 
         Variables.amountOfTurns = 0;
+        Variables.amountOfBlack = 0;
+        Variables.amountOfWhite = 0;
+        Variables.pointsOfBlack = 0;
+        Variables.pointsOfWhite = 0;
+        Variables.tilesLaidBlack = 0;
+        Variables.tilesLaidWhite = 0;
+
         Variables.turn = true;
         Variables.Board = makeBoard();
         //playerTurn();

@@ -96,27 +96,29 @@
         android:id="@+id/StopGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="18dp"
+        android:layout_toEndOf="@+id/Coloumns"
+        android:layout_toRightOf="@+id/Coloumns"
         android:onClick="StopGame"
         android:text="Stop Game"
-        android:layout_above="@+id/linearLayout"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="18dp"
-        android:layout_toRightOf="@+id/Coloumns"
-        android:layout_toEndOf="@+id/Coloumns"/>
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/PassButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="pass"
-        android:text="Pass your turn"
         android:layout_alignBaseline="@+id/StopGameButton"
         android:layout_alignBottom="@+id/StopGameButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/Coloumns"
-        android:layout_toStartOf="@+id/Coloumns"/>
+        android:layout_toStartOf="@+id/Coloumns"
+        android:onClick="pass"
+        android:text="Pass your turn"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/OddEvenText"
