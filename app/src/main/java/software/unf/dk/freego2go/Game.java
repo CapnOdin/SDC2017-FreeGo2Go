@@ -51,10 +51,7 @@ public class Game extends AppCompatActivity {
             for (int j = 0; j < Variables.boardsizeModifier; j++) {
                 lst[i + j] = 0;
                 Board.get(i).add(0);
-
             }
-
-            //System.out.println(Board.get(i));
         }
 
         GridColumns.setAdapter(new GridAdapter(this));

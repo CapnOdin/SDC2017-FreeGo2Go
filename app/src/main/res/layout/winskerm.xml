@@ -8,14 +8,14 @@
         android:id="@+id/WinText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="118dp"
-        android:text="Black Wins"
+        android:layout_marginTop="72dp"
         android:onClick="winPlayer"
+        android:text="Black Wins"
         android:textAlignment="center"
-        android:textSize="36sp"
-        android:textStyle="bold"/>
+        android:textSize="72sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/WinTurns"
@@ -25,16 +25,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
         android:text="Amount of Turns: 100"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/WinBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/WinTurns"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
         android:text="Black Score: 80"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/WinWhite"
@@ -44,16 +47,17 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:text="White Score: 100"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="19dp"
-        android:layout_toEndOf="@+id/WinBlack"
-        android:text="Go To Menu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
         android:onClick="goToMenu"
-        android:layout_toRightOf="@+id/WinBlack"/>
+        android:text="Go To Menu"
+        android:textSize="36sp" />
 </RelativeLayout>
