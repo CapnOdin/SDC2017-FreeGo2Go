@@ -19,6 +19,8 @@ public class Variables {
     public static int amountOfTurns = 0;
     public static int pointsOfWhite = 0;
     public static int pointsOfBlack = 0;
+    public static int tilesLaidBlack = 0;
+    public static int tilesLaidWhite = 0; //Husk at indsætte tælle op
     public static int currentX;
     public static int currentY;
 

@@ -27,6 +27,13 @@ public class Game extends AppCompatActivity {
         GridColumns = (GridView) findViewById(R.id.Columns);
 
         Variables.amountOfTurns = 0;
+        Variables.amountOfBlack = 0;
+        Variables.amountOfWhite = 0;
+        Variables.pointsOfBlack = 0;
+        Variables.pointsOfWhite = 0;
+        Variables.tilesLaidBlack = 0;
+        Variables.tilesLaidWhite = 0;
+
         Variables.turn = true;
         Variables.Board = makeBoard();
         //playerTurn();
@@ -49,10 +56,7 @@ public class Game extends AppCompatActivity {
             for (int j = 0; j < Variables.boardsizeModifier; j++) {
                 lst[i + j] = 0;
                 Board.get(i).add(0);
-
             }
-
-            //System.out.println(Board.get(i));
         }
 
         GridColumns.setAdapter(new GridAdapter(this));
@@ -133,7 +137,6 @@ public class Game extends AppCompatActivity {
     }
 
     public void kill(ArrayList<Point> previus) {
-        System.out.println("sdfsdgsfdg");
         for(Point p : previus) {
             if(Variables.Board.get(p.x).get(p.y) == state.black) {
                 Variables.amountOfBlack--;

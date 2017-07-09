@@ -22,7 +22,7 @@ public class StopDialog extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final Game context = this.d;
-        builder.setMessage("Are you sure you want to stop your game?")
+        builder.setMessage("Are you sure you want to stop the game, and does your opponent agree to you stopping the game?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent intent = new Intent(context, Win.class);

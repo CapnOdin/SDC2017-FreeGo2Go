@@ -24,7 +24,7 @@
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="1. The board is empty at the onset of the game (unless players agree to place a handicap)."
+        android:text="1. The board is empty at the onset of the game."
         android:textAlignment="viewStart"
         android:textSize="24sp"/>
 
@@ -47,7 +47,7 @@
         android:layout_alignStart="@+id/Rule2"
         android:layout_below="@+id/Rule2"
         android:layout_marginTop="10dp"
-        android:text="3. A move consists of placing one stone of one's own color on an empty intersection on the board."
+        android:text="3. A move consists of placing one stone of one's own color on an empty tile which has not been captured on the board."
         android:textSize="24sp"/>
 
     <TextView
@@ -70,7 +70,8 @@
         android:layout_below="@+id/Rule4"
         android:layout_marginTop="10dp"
         android:layout_weight="0.06"
-        android:text="5. A stone or solidly connected group of stones of one color is captured and removed from the board when all the intersections directly adjacent to it are occupied by the enemy. (Capture of the enemy takes precedence over self-capture.)"
+        android:text="5. A stone or connected group of stones are captured, when it/they have no liberties. A tile
+         with a liberty is a tile surrounding the area you are trying to capture which is empty and not capture. So if a group of stones has one liberty or more it does not count as a capture."
         android:textSize="24sp"/>
 
     <TextView
@@ -82,7 +83,7 @@
 
         android:layout_below="@+id/Rule5"
         android:layout_marginTop="10dp"
-        android:text="6. No stone may be played so as to recreate a former board position."
+        android:text="6. No stone may be played to recreate a former board position."
         android:textSize="24sp"/>
 
     <TextView
@@ -93,7 +94,7 @@
         android:layout_alignStart="@+id/Rule6"
         android:layout_below="@+id/Rule6"
         android:layout_marginTop="10dp"
-        android:text="7. Two consecutive passes end the game."
+        android:text="7. The game ends when both players agree to end it or all possible tiles are captured."
         android:textSize="24sp"/>
 
     <TextView
@@ -104,7 +105,7 @@
         android:layout_alignStart="@+id/Rule7"
         android:layout_below="@+id/Rule7"
         android:layout_marginTop="10dp"
-        android:text="8. A player's territory consists of all the points the player has either occupied or surrounded."
+        android:text="8. A player's territory consists of all the tiles the player occupies."
         android:textSize="24sp"/>
 
     <TextView
@@ -115,6 +116,6 @@
         android:layout_alignStart="@+id/Rule8"
         android:layout_below="@+id/Rule8"
         android:layout_marginTop="10dp"
-        android:text="9. The player with more territory wins."
+        android:text="9. The player with the most territory, when the two players agree to end the game, wins."
         android:textSize="24sp"/>
 </RelativeLayout>

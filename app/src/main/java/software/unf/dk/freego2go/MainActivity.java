@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     public void startGame(View view) {
         Intent intent = new Intent(this, Giri.class);
         startActivity(intent);
-
     }
 
     public void rules(View view) {
