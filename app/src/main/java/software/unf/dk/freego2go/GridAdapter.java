@@ -49,6 +49,7 @@ public class GridAdapter extends BaseAdapter {
             imageView.setAdjustViewBounds(true);
             imageView.j = position / Variables.boardsizeModifier;
             imageView.i = position % Variables.boardsizeModifier;
+            lst.get(imageView.i).add(imageView);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View view) {
                     int i = ((IndexedImageView) view).i;
