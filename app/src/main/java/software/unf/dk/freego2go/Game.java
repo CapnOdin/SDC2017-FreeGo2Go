@@ -144,12 +144,15 @@ public class Game extends AppCompatActivity {
             if(Variables.Board.get(p.x).get(p.y) == state.black) {
                 Variables.amountOfBlack--;
                 Variables.pointsOfWhite++;
+              Variables.Board.get(p.x).set(p.y,state.whiteQ);
             } else if(Variables.Board.get(p.x).get(p.y) == state.white) {
                 Variables.amountOfWhite--;
                 Variables.pointsOfBlack++;
+                Variables.Board.get(p.x).set(p.y, state.blackQ);
+            } else {
+                Variables.Board.get(p.x).set(p.y, 0);
             }
             adapter.lst.get(p.x).get(p.y).setImageResource(R.drawable.neutral);
-            Variables.Board.get(p.x).set(p.y, 0);
         }
         previus.clear();
         render();
