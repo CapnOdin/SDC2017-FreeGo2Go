@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -46,14 +47,13 @@ public class GridAdapter extends BaseAdapter {
             imageView.setPadding(8, 8, 8, 8);
             imageView.setMinimumWidth(0);
             imageView.setAdjustViewBounds(true);
-            imageView.j = position / (Variables.boardsizeModifier);
-            imageView.i = position % (Variables.boardsizeModifier);
-            lst.get(imageView.i).add(imageView);
-            System.out.println(imageView.i + " " + imageView.j);
+            imageView.j = position / Variables.boardsizeModifier;
+            imageView.i = position % Variables.boardsizeModifier;
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View view) {
                     int i = ((IndexedImageView) view).i;
                     int j = ((IndexedImageView) view).j;
+                    boolean invalid = false;
                     if (Variables.Board.get(i).get(j) == state.empty) {
                         ArrayList<Point> previous = new ArrayList<Point>();
                         if (Variables.turn && search.placeLegal(Variables.Board, new ArrayList<Point>(), state.black, i, j)) {
@@ -70,7 +70,15 @@ public class GridAdapter extends BaseAdapter {
                             kill(i, j, state.black);
                             ((Game) mContext).render();
                             ((Game) mContext).switchTurn();
+                        } else {
+                            invalid = true;
                         }
+                    } else {
+                        invalid = true;
+                    }
+                    if(invalid) {
+                        Toast toast = Toast.makeText(mContext, "invalid move", Toast.LENGTH_LONG);
+                        toast.show();
                     }
                 }
             });
@@ -89,17 +97,25 @@ public class GridAdapter extends BaseAdapter {
         ArrayList<Point> previous = new ArrayList<Point>();
         System.out.println(i + ", " + j);
         if(onBoard(i - 1, j) && Variables.Board.get(i - 1).get(j) == state && !search.liberties(Variables.Board, previous, state, i - 1, j)) {
+            //System.out.println("1" + previous);
             ((Game) mContext).kill(previous);
         }
+        previous.clear();
         if(onBoard(i + 1, j) && Variables.Board.get(i + 1).get(j) == state && !search.liberties(Variables.Board, previous, state, i + 1, j)) {
+            //System.out.println("2" + previous);
             ((Game) mContext).kill(previous);
         }
+        previous.clear();
         if(onBoard(i, j - 1) && Variables.Board.get(i).get(j - 1) == state && !search.liberties(Variables.Board, previous, state, i, j - 1)) {
+            //System.out.println("3" + previous + "-" + state + "-" + Variables.Board.get(i).get(j - 1) + "-");
             ((Game) mContext).kill(previous);
         }
+        previous.clear();
         if(onBoard(i, j + 1) && Variables.Board.get(i).get(j + 1) == state && !search.liberties(Variables.Board, previous, state, i, j + 1)) {
+            //System.out.println("4" + previous);
             ((Game) mContext).kill(previous);
         }
+        previous.clear();
     }
 
     public static boolean onBoard(int i, int j) {

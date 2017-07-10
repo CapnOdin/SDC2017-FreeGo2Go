@@ -139,22 +139,23 @@ public class Game extends AppCompatActivity {
         ////System.out.println("\nAmount of Turns: " + Variables.amountOfTurns);
     }
 
-    public void kill(ArrayList<Point> previus) {
-        for(Point p : previus) {
+    public void kill(ArrayList<Point> previous) {
+        for(Point p : previous) {
+            System.out.println(p);
             if(Variables.Board.get(p.x).get(p.y) == state.black) {
                 Variables.amountOfBlack--;
                 Variables.pointsOfWhite++;
-              Variables.Board.get(p.x).set(p.y,state.whiteQ);
+                Variables.Board.get(p.x).set(p.y,state.whiteQ);
             } else if(Variables.Board.get(p.x).get(p.y) == state.white) {
                 Variables.amountOfWhite--;
                 Variables.pointsOfBlack++;
                 Variables.Board.get(p.x).set(p.y, state.blackQ);
-            } else {
-                Variables.Board.get(p.x).set(p.y, 0);
             }
-            adapter.lst.get(p.x).get(p.y).setImageResource(R.drawable.neutral);
+            adapter.lst.get(p.x).get(p.y).setImageResource(R.drawable.neutralcross);
+            //Variables.Board.get(p.x).set(p.y, 0);
+            //adapter.lst.get(p.x).get(p.y).setImageResource(R.drawable.neutral);
         }
-        previus.clear();
+        previous.clear();
         render();
     }
 

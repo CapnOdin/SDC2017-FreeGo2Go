@@ -1,5 +1,7 @@
 package software.unf.dk.freego2go;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 
@@ -178,10 +180,10 @@ public class search {
 
     public static boolean liberties(ArrayList<ArrayList<Integer>> board, ArrayList<Point> previousPoints, int state2, int x, int y) {
         previousPoints.add(new Point(x, y));
-        return     checkArea(state2, x - 1, y, board, previousPoints)
-                || checkArea(state2, x + 1, y, board, previousPoints)
-                || checkArea(state2, x, y - 1, board, previousPoints)
-                || checkArea(state2, x, y + 1, board, previousPoints);
+        return     checkArea(state2, x, y - 1, board, previousPoints)
+                || checkArea(state2, x, y + 1, board, previousPoints)
+                || checkArea(state2, x - 1, y, board, previousPoints)
+                || checkArea(state2, x + 1, y, board, previousPoints);
     }
 
     public static boolean seenPreviously(ArrayList<Point> previousPoints, int x, int y, int state, int state1) {
@@ -189,17 +191,15 @@ public class search {
     }
 
     public static boolean checkArea(int state2, int x, int y, ArrayList<ArrayList<Integer>> board, ArrayList<Point> previousPoints) {
+        //System.out.println(x + ", " + y);
         if (x >= 0 && y >= 0 && x < Variables.boardsizeModifier && y < Variables.boardsizeModifier) {
+            //System.out.println(x + ", " + y + " -" + board.get(x).get(y) + "-");
             if (seenPreviously(previousPoints, x, y, board.get(x).get(y), 0)) {
                 return true;
-
             } else if (seenPreviously(previousPoints, x, y, board.get(x).get(y), state2)) {
                 return liberties(board, previousPoints, state2, x, y);
             }
         }
-
         return (false);
     }
-
-
 }

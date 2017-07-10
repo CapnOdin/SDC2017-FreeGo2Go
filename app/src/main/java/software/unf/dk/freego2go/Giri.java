@@ -40,7 +40,7 @@ public class Giri extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sizeArray);
         s.setAdapter(adapter);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     //Vælger random tal, hvis inputtet svarer til vores generede tal så starter spilleren (ulige/lige)

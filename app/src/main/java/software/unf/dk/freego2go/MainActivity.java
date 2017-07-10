@@ -18,20 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(menuskerm);
-        /* Unconventional App Description Placement
-
-        Now you can play the legendary, 3000-year old game of "Go" on your very own device. Go on a
-        magical journey into the mind of chinese people where everything is seen black and white, and
-        tiles are covered by the minute.
-
-        Features include:
-
-       -  Bugs
-       -  Local Multiplayer Game of "Go"
-       -  No Computer player; Play with Friends!
-       -  A ruleset that you can kind of follow
-         */
-
 
         ButtonStart = (Button) findViewById(R.id.StartButton);
         ButtonRules = (Button) findViewById(R.id.RulesButton);
